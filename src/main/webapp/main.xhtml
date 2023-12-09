@@ -32,22 +32,17 @@
 
             <h5 class="label">R:</h5>
             <h:panelGrid columns="1">
-                <p:inputText name="r" id="r" maxlength="1" value="#{point.radius}">
-                    <f:validateLongRange minimum="1" maximum="4"/>
-                </p:inputText>
+                <p:inputNumber name="r" id="r" maxlength="10" value="#{point.radius}" decimalSeparator=".">
+                    <f:validateDoubleRange minimum="1" maximum="3"/>
+                </p:inputNumber>
             </h:panelGrid>
             <p:message for="r" display="text"/>
         </div>
         <div class="button">
             <h:button value="Начальная страница" styleClass="mybutton" outcome="go-index"/>
         </div>
-        <!--        <div class="button">-->
-        <!--            <h:form id="form" styleClass="buttons-container">-->
-        <!--                <h:button value="Главная" styleClass="mybutton" action="go-to-main" id="go-to-main-button"/>-->
-        <!--            </h:form>-->
-        <!--        </div>-->
     </div>
     <div class="footer"> &copy; 2023 ИТМО ПИиКТ. Создано с помощью JSF. Все права защищены.</div>
-    <h:outputScript name="main.js" library="js" type="module"/>
+    <h:outputScript name="script.js" library="build" type="module"/>
 </h:body>
 </html>

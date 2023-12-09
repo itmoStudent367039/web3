@@ -42,3 +42,6 @@ bin/
 .DS_Store
 /gradlew
 /gradlew.bat
+/src/main/webapp/resources/webpack-ts/node_modules/
+/src/main/webapp/resources/build/
+/.idea/

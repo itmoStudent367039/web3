@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 public class Point implements Serializable {
     private double x;
     private double y;
-    private double radius;
+    private double radius = 1;
     private boolean result;
     private LocalDateTime currentTime;
     private double requestTime;
