@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Graph detector</title>
+    <h:outputStylesheet name="css/styles.css"/>
+</h:head>
+<h:body>
+    <div class="header">
+        Абдуллин Игорь, P3208, Вариант №623732
+    </div>
+    <div class="content">
+        <div class="form-container">
+            <h5>X:</h5>
+            <h:panelGrid columns="1" style="margin-bottom: 10px">
+                <p:inputText name="x" id="x" value="#{point.x}"/>
+                <p:slider for="x" minValue="-2" maxValue="2" step="0.5" range="max"/>
+            </h:panelGrid>
+            <p:message for="x" display="text"/>
+
+            <h5 class="label">Y:</h5>
+            <h:panelGrid columns="1">
+                <p:inputNumber name="y" id="y" maxlength="10" value="#{point.y}" decimalSeparator=".">
+                    <f:validateDoubleRange minimum="-5" maximum="3"/>
+                </p:inputNumber>
+            </h:panelGrid>
+            <p:message for="y" display="text"/>
+
+            <h5 class="label">R:</h5>
+            <h:panelGrid columns="1">
+                <p:inputText name="r" id="r" maxlength="1" value="#{point.radius}">
+                    <f:validateLongRange minimum="1" maximum="4"/>
+                </p:inputText>
+            </h:panelGrid>
+            <p:message for="r" display="text"/>
+        </div>
+        <div class="button">
+            <h:button value="Начальная страница" styleClass="mybutton" outcome="go-index"/>
+        </div>
+        <!--        <div class="button">-->
+        <!--            <h:form id="form" styleClass="buttons-container">-->
+        <!--                <h:button value="Главная" styleClass="mybutton" action="go-to-main" id="go-to-main-button"/>-->
+        <!--            </h:form>-->
+        <!--        </div>-->
+    </div>
+    <div class="footer"> &copy; 2023 ИТМО ПИиКТ. Создано с помощью JSF. Все права защищены.</div>
+</h:body>
+</html>

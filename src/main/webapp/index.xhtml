@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Start page</title>
+    <h:outputStylesheet name="css/styles.css"/>
+</h:head>
+<h:body>
+    <div class="header">
+        Абдуллин Игорь, P3208, Вариант №623732
+    </div>
+    <div class="content">
+        <div class="clock-container">
+            <h:form>
+                <p:clock displayMode="analog"/>
+            </h:form>
+        </div>
+        <div class="button">
+            <h:form id="form" styleClass="buttons-container">
+                <h:button value="Главная" styleClass="mybutton" action="go-to-main" id="go-to-main-button"/>
+            </h:form>
+        </div>
+    </div>
+    <div class="footer"> &copy; 2023 ИТМО ПИиКТ. Создано с помощью JSF. Все права защищены.</div>
+</h:body>
+</html>
