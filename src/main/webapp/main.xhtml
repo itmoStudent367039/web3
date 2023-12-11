@@ -7,7 +7,9 @@
       xmlns:p="http://primefaces.org/ui">
 <h:head>
     <title>Graph detector</title>
-    <h:outputStylesheet name="css/styles.css"/>
+    <h:outputStylesheet name="css/main.css"/>
+    <h:outputStylesheet name="css/button.css"/>
+    <h:outputStylesheet name="css/table.css"/>
 </h:head>
 <h:body>
     <div class="header">
@@ -15,31 +17,63 @@
     </div>
     <div class="content">
         <div class="form-container">
-            <h5>X:</h5>
-            <h:panelGrid columns="1" style="margin-bottom: 10px">
-                <p:inputText name="x" id="x" value="#{point.x}"/>
+            <h:panelGrid columns="1">
+                <p:outputLabel value="X: " for="x"/>
+                <p:inputText name="x" id="x" value="#{point.x}" label="X"/>
                 <p:slider for="x" minValue="-2" maxValue="2" step="0.5" range="max"/>
             </h:panelGrid>
             <p:message for="x" display="text"/>
 
-            <h5 class="label">Y:</h5>
             <h:panelGrid columns="1">
-                <p:inputNumber name="y" id="y" maxlength="10" value="#{point.y}" decimalSeparator=".">
+                <p:outputLabel value="Y: " for="y"/>
+                <p:inputNumber name="y" id="y" maxlength="10" value="#{point.y}" decimalSeparator="." label="Y">
                     <f:validateDoubleRange minimum="-5" maximum="3"/>
                 </p:inputNumber>
             </h:panelGrid>
             <p:message for="y" display="text"/>
 
-            <h5 class="label">R:</h5>
             <h:panelGrid columns="1">
-                <p:inputNumber name="r" id="r" maxlength="10" value="#{point.radius}" decimalSeparator=".">
+                <p:outputLabel value="R: " for="r"/>
+                <p:inputNumber name="r" id="r" maxlength="10" value="#{point.radius}" decimalSeparator="." label="R">
                     <f:validateDoubleRange minimum="1" maximum="3"/>
                 </p:inputNumber>
+
             </h:panelGrid>
             <p:message for="r" display="text"/>
+            <p:commandButton ajax="true" id="submit" value="Отправить" styleClass="mybutton"/>
         </div>
-        <div class="button">
-            <h:button value="Начальная страница" styleClass="mybutton" outcome="go-index"/>
+
+        <div class="wrapper-table">
+            <p:dataTable var="p" value="#{pointService.pointList}" styleClass="table">
+                <p:column headerText="X">
+                    <h:outputText value="#{p.x}"/>
+                </p:column>
+
+                <p:column headerText="Y">
+                    <h:outputText value="#{p.y}"/>
+                </p:column>
+
+                <p:column headerText="Radius">
+                    <h:outputText value="#{p.radius}"/>
+                </p:column>
+
+                <p:column headerText="Result">
+                    <h:outputText value="#{p.result}"/>
+                </p:column>
+
+                <p:column headerText="Current time">
+                    <h:outputText value="#{p.currentTime}"/>
+                </p:column>
+
+                <p:column headerText="Request time">
+                    <h:outputText value="#{p.requestTime}"/>
+                </p:column>
+            </p:dataTable>
+        </div>
+
+        <div class="buttons-container">
+            <h:button id="homeButton" value="Начальная страница" styleClass="mybutton" outcome="go-index"/>
+            <p:commandButton ajax="true" id="reset" value="Очистить" styleClass="mybutton"/>
         </div>
     </div>
     <div class="footer"> &copy; 2023 ИТМО ПИиКТ. Создано с помощью JSF. Все права защищены.</div>

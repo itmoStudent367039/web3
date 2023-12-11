@@ -1,0 +1,55 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 15px;
+    background: #E1ECC8;
+    font-family: "Boogaloo", cursive;
+    font-size: 20px;
+}
+
+.header {
+    background-color: #A0C49D;
+    color: #37444c;
+    padding: 20px;
+    text-align: center;
+    font-style: italic;
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #A0C49D;
+    color: #37444c;
+}
+
+.footer {
+    background-color: #A0C49D;
+    color: #37444c;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 16px;
+    font-style: italic;
+}
+
+.header,
+.aside,
+.content,
+.footer {
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+.clock-container {
+    width: 200px;
+    height: 200px;
+}
+
+.mybutton {
+    margin-top: 20px;
+    text-align: center;
+}

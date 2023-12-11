@@ -34,7 +34,7 @@ export class Graph {
     drawGraph(r: number): void {
         const totalPoints: number = 7;
         const pointInPixels: number = this.SIZE / totalPoints;
-        this.ctx.fillStyle = "#765827";
+        this.ctx.fillStyle = "#748E63";
         this.ctx.beginPath();
         this.ctx.moveTo(this.SIZE / 2, this.SIZE / 2);
         this.ctx.lineTo(this.SIZE / 2, this.SIZE / 2 + r * pointInPixels);

@@ -9,12 +9,34 @@ import java.time.LocalDateTime;
 @Named
 @SessionScoped
 public class Point implements Serializable {
+    private Integer id;
     private double x;
     private double y;
     private double radius = 1;
     private boolean result;
     private LocalDateTime currentTime;
     private double requestTime;
+
+    public Point(Integer id, double x, double y, double radius, boolean result, LocalDateTime currentTime, double requestTime) {
+        this.id = id;
+        this.x = x;
+        this.y = y;
+        this.radius = radius;
+        this.result = result;
+        this.currentTime = currentTime;
+        this.requestTime = requestTime;
+    }
+
+    public Point() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public double getX() {
         return x;
