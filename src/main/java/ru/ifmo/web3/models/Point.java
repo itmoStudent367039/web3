@@ -1,20 +1,31 @@
-package ru.ifmo.web3;
+package ru.ifmo.web3.models;
 
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
-
+import jakarta.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Named
 @SessionScoped
+@Entity
+@Table
 public class Point implements Serializable {
+    @Id
+    @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column
     private double x;
+    @Column
     private double y;
+    @Column
     private double radius = 1;
+    @Column
     private boolean result;
+    @Column
     private LocalDateTime currentTime;
+    @Column
     private double requestTime;
 
     public Point(Integer id, double x, double y, double radius, boolean result, LocalDateTime currentTime, double requestTime) {

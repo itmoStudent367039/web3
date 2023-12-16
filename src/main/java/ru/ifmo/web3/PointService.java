@@ -2,6 +2,8 @@ package ru.ifmo.web3;
 
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
+import ru.ifmo.web3.models.Point;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
