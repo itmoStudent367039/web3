@@ -38,6 +38,12 @@ public class Point implements Serializable {
         this.requestTime = requestTime;
     }
 
+    public Point(double x, double y, double radius) {
+        this.x = x;
+        this.y = y;
+        this.radius = radius;
+    }
+
     public Point() {
     }
 
@@ -97,4 +103,16 @@ public class Point implements Serializable {
         this.requestTime = requestTime;
     }
 
+    @Override
+    public String toString() {
+        return "Point{" +
+                "id=" + id +
+                ", x=" + x +
+                ", y=" + y +
+                ", radius=" + radius +
+                ", result=" + result +
+                ", currentTime=" + currentTime +
+                ", requestTime=" + requestTime +
+                '}';
+    }
 }

@@ -6,7 +6,7 @@ export class Graph {
     private TEXT_LINE_HEIGHT: number = 3;
     private COLOR_RED: string = "#D18189";
     private COLOR_GREEN: string = "#87C67A";
-    private readonly canvas: HTMLElement;
+    readonly canvas: HTMLElement;
     private readonly ctx: CanvasRenderingContext2D;
 
     constructor() {
@@ -154,8 +154,8 @@ export class Graph {
         this.ctx.stroke();
     }
 
-    drawPoint(x: number, y: number, success: boolean): void {
-        if (success) {
+    drawPoint(point: Point): void {
+        if (point.result) {
             this.ctx.fillStyle = this.COLOR_GREEN;
         } else {
             this.ctx.fillStyle = this.COLOR_RED;
@@ -164,8 +164,8 @@ export class Graph {
         const pointInPixels: number = this.SIZE / totalPoints;
         this.ctx.beginPath();
         this.ctx.arc(
-            this.SIZE / 2 + pointInPixels * x,
-            this.SIZE / 2 - y * pointInPixels,
+            this.SIZE / 2 + pointInPixels * point.x,
+            this.SIZE / 2 - point.y * pointInPixels,
             3,
             0,
             Math.PI * 2,
@@ -175,12 +175,18 @@ export class Graph {
         this.ctx.fillStyle = "black";
         this.ctx.lineWidth = 1;
         this.ctx.arc(
-            this.SIZE / 2 + pointInPixels * x,
-            this.SIZE / 2 - y * pointInPixels,
+            this.SIZE / 2 + pointInPixels * point.x,
+            this.SIZE / 2 - point.y * pointInPixels,
             3,
             0,
             Math.PI * 2,
         );
         this.ctx.stroke();
     }
+}
+
+export interface Point {
+    x: number;
+    y: number;
+    result: boolean;
 }

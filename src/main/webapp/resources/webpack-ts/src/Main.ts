@@ -1,5 +1,15 @@
-import {Graph} from "./Graph";
-const RADIUS_INPUT_TAG_NAME: string = 'r_hinput';
+import {Graph, Point} from "./Graph";
+
+interface SuperWindow extends Window {
+    drawGraph?: (points: Point[], radius: number) => void;
+}
+
+declare const window: SuperWindow;
+
+window.drawGraph = (points: Point[], radius: number) => {
+    GRAPH.redrawAll(radius);
+    points.forEach(point => GRAPH.drawPoint(point));
+};
 
 (() => {
     const graphContainer = document.createElement('div');
@@ -17,32 +27,17 @@ const RADIUS_INPUT_TAG_NAME: string = 'r_hinput';
 
 const GRAPH: Graph = new Graph();
 
-function findAndReturnSelectedRadius(): number {
-    const selectedElement: HTMLInputElement = document.getElementById(RADIUS_INPUT_TAG_NAME) as HTMLInputElement;
-    console.log('take value: ', selectedElement.value);
-    return Number(selectedElement.value);
+function watchClicking(event: MouseEvent): void {
+
+    const x: number = ((7 / GRAPH.SIZE) * (event.offsetX - GRAPH.SIZE / 2));
+
+    const y: number = ((7 / GRAPH.SIZE) * (GRAPH.SIZE / 2 - event.offsetY));
+
+    // @ts-ignore
+    addAttempt([{name: "x", value: x.toString()}, {name: "y", value: y.toString()},])
 }
 
-async function redrawGraphAndPoints() {
-    const radius: number = findAndReturnSelectedRadius();
+GRAPH.canvas.onmousedown = watchClicking;
 
-    console.log('current radius: ', radius);
-    if (validateRadius(radius)) {
-        console.log('try to draw graph');
-        GRAPH.redrawAll(radius);
-    } else {
-        console.log("radius isn't valid: ", radius);
-    }
-
-    // TODO: drawAllPoints(graph);
-}
-
-function validateRadius(radius: number): boolean {
-    return Number.isFinite(radius) && radius >= 1 && radius <= 3;
-}
-
-document.addEventListener("DOMContentLoaded", redrawGraphAndPoints);
-
-document
-    .getElementById("r")
-    .addEventListener("change", redrawGraphAndPoints);
+// @ts-ignore
+document.addEventListener('DOMContentLoaded', initGraph)

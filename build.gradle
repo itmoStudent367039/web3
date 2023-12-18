@@ -33,6 +33,7 @@ dependencies {
   implementation('org.hibernate.validator:hibernate-validator:7.0.5.Final')
   implementation('org.primefaces:primefaces:13.0.0:jakarta')
   implementation ('org.postgresql:postgresql:42.6.0')
+  implementation('com.google.code.gson:gson:2.10.1')
 
   testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
   testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")

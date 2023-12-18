@@ -17,34 +17,42 @@
     </div>
     <div class="content">
         <div class="form-container">
-            <h:panelGrid columns="1">
-                <p:outputLabel value="X: " for="x"/>
-                <p:inputText name="x" id="x" value="#{point.x}" label="X"/>
-                <p:slider for="x" minValue="-2" maxValue="2" step="0.5" range="max"/>
-            </h:panelGrid>
-            <p:message for="x" display="text"/>
+            <h:form id="form">
+                <h:panelGrid columns="1">
+                    <p:outputLabel value="X: " for="x"/>
+                    <p:inputText name="x" id="x" value="#{point.x}" label="X"/>
+                    <p:slider for="x" minValue="-2" maxValue="2" step="0.5" range="max"/>
+                </h:panelGrid>
+                <p:message for="x" display="text"/>
 
-            <h:panelGrid columns="1">
-                <p:outputLabel value="Y: " for="y"/>
-                <p:inputNumber name="y" id="y" maxlength="10" value="#{point.y}" decimalSeparator="." label="Y">
-                    <f:validateDoubleRange minimum="-5" maximum="3"/>
-                </p:inputNumber>
-            </h:panelGrid>
-            <p:message for="y" display="text"/>
+                <h:panelGrid columns="1">
+                    <p:outputLabel value="Y: " for="y"/>
+                    <p:inputNumber name="y" id="y" maxlength="10" value="#{point.y}" decimalSeparator="." label="Y">
+                        <f:validateDoubleRange minimum="-5" maximum="3"/>
+                    </p:inputNumber>
+                </h:panelGrid>
+                <p:message for="y" display="text"/>
 
-            <h:panelGrid columns="1">
-                <p:outputLabel value="R: " for="r"/>
-                <p:inputNumber name="r" id="r" maxlength="10" value="#{point.radius}" decimalSeparator="." label="R">
-                    <f:validateDoubleRange minimum="1" maximum="3"/>
-                </p:inputNumber>
+                <h:panelGrid columns="1">
+                    <p:outputLabel value="R: " for="r"/>
+                    <p:inputNumber name="r" id="r" maxlength="10" value="#{point.radius}" decimalSeparator="."
+                                   label="R">
+                        <f:validateDoubleRange minimum="1" maximum="3"/>
+                        <p:ajax update="drawPointsPanel"/>
+                    </p:inputNumber>
 
-            </h:panelGrid>
-            <p:message for="r" display="text"/>
-            <p:commandButton ajax="true" id="submit" value="Отправить" styleClass="mybutton"/>
+                </h:panelGrid>
+                <p:message for="r" display="text"/>
+                <div class="buttons-container">
+                    <p:commandButton ajax="true" id="submit" value="Отправить" styleClass="mybutton"
+                                     action="#{pointDAO.addPoint(point)}"
+                                     update="table @form drawPointsPanel"/>
+                </div>
+            </h:form>
         </div>
 
         <div class="wrapper-table">
-            <p:dataTable var="p" value="#{pointService.pointList}" styleClass="table">
+            <p:dataTable id="table" var="p" value="#{pointDataModel}" styleClass="table">
                 <p:column headerText="X">
                     <h:outputText value="#{p.x}"/>
                 </p:column>
@@ -62,7 +70,9 @@
                 </p:column>
 
                 <p:column headerText="Current time">
-                    <h:outputText value="#{p.currentTime}"/>
+                    <h:outputText value="#{p.currentTime}">
+                        <!--                        <f:convertDateTime pattern="dd.MM.yyyy HH:mm"/>-->
+                    </h:outputText>
                 </p:column>
 
                 <p:column headerText="Request time">
@@ -73,10 +83,20 @@
 
         <div class="buttons-container">
             <h:button id="homeButton" value="Начальная страница" styleClass="mybutton" outcome="go-index"/>
-            <p:commandButton ajax="true" id="reset" value="Очистить" styleClass="mybutton"/>
+            <p:commandButton ajax="true" id="reset" value="Очистить" styleClass="mybutton"
+                             action="#{pointDAO.clearAttempts()}" update="table drawPointsPanel"/>
         </div>
     </div>
     <div class="footer"> &copy; 2023 ИТМО ПИиКТ. Создано с помощью JSF. Все права защищены.</div>
     <h:outputScript name="script.js" library="build" type="module"/>
 </h:body>
+<h:panelGroup id="drawPointsPanel">
+    <h:outputScript>
+        drawGraph(JSON.parse('#{pointDAO.pointsAsJSON}'), '#{point.radius}');
+    </h:outputScript>
+</h:panelGroup>
+
+<p:remoteCommand name="initGraph" update="drawPointsPanel" process="@this"/>
+<p:remoteCommand name="addAttempt" action="#{pointDAO.addPoint(point.radius)}" update="table drawPointsPanel"
+                 process="@this"/>
 </html>

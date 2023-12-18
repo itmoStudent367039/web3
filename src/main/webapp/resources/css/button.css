@@ -1,24 +1,24 @@
 .mybutton, #submit, #reset {
     appearance: none;
-    background-color: white;
-    border: 1px solid rgba(27, 31, 35, 0.15);
-    border-radius: 6px;
+    background-color: white !important;
+    border: 1px solid rgba(27, 31, 35, 0.15) !important;
+    border-radius: 6px !important;
     box-shadow:
             rgba(27, 31, 35, 0.04) 0 1px 0,
             rgba(255, 255, 255, 0.25) 0 1px 0 inset;
     box-sizing: border-box;
-    color: #24292e;
-    cursor: pointer;
-    display: inline-block;
-    font-family: "Boogaloo", cursive;
-    font-size: 16px;
+    color: #24292e !important;
+    cursor: pointer !important;
+    display: inline-block !important;
+    font-family: "Boogaloo", cursive !important;
+    font-size: 16px !important;
     font-weight: 500;
     line-height: 20px;
     list-style: none;
-    padding: 6px 16px;
-    position: relative;
-    transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
-    user-select: none;
+    padding: 6px 16px !important;
+    position: relative !important;
+    transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1) !important;
+    user-select: none !important;
     -webkit-user-select: none;
     touch-action: manipulation;
     vertical-align: middle;
