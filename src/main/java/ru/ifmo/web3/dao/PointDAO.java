@@ -45,9 +45,7 @@ public class PointDAO implements Serializable {
 
       final Point point = new Point(x, y, pointRadius);
       this.addPoint(point);
-    } catch (IllegalArgumentException e) {
-      e.printStackTrace();
-    }
+    } catch (IllegalArgumentException ignored) {}
   }
 
   @Transactional

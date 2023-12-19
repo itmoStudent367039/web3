@@ -76,6 +76,13 @@ body {
     justify-content: center;
 }
 
+.submit-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 20px;
+}
+
 .wrapper-table {
     margin: 20px;
     order: 3;

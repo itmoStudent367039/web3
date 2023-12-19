@@ -23,7 +23,6 @@
                     <p:inputText name="x" id="x" value="#{point.x}" label="X"/>
                     <p:slider for="x" minValue="-2" maxValue="2" step="0.5" range="max"/>
                 </h:panelGrid>
-                <p:message for="x" display="text"/>
 
                 <h:panelGrid columns="1">
                     <p:outputLabel value="Y: " for="y"/>
@@ -31,7 +30,6 @@
                         <f:validateDoubleRange minimum="-5" maximum="3"/>
                     </p:inputNumber>
                 </h:panelGrid>
-                <p:message for="y" display="text"/>
 
                 <h:panelGrid columns="1">
                     <p:outputLabel value="R: " for="r"/>
@@ -42,8 +40,7 @@
                     </p:inputNumber>
 
                 </h:panelGrid>
-                <p:message for="r" display="text"/>
-                <div class="buttons-container">
+                <div class="submit-container">
                     <p:commandButton ajax="true" id="submit" value="Отправить" styleClass="mybutton"
                                      action="#{pointDAO.addPoint(point)}"
                                      update="table @form drawPointsPanel"/>
@@ -54,15 +51,27 @@
         <div class="wrapper-table">
             <p:dataTable id="table" var="p" value="#{pointDataModel}" styleClass="table">
                 <p:column headerText="X">
-                    <h:outputText value="#{p.x}"/>
+                    <h:outputText value="#{p.x}">
+                        <f:convertNumber type="number"
+                                         maxFractionDigits="3"
+                                         groupingUsed="false"/>
+                    </h:outputText>
                 </p:column>
 
                 <p:column headerText="Y">
-                    <h:outputText value="#{p.y}"/>
+                    <h:outputText value="#{p.y}">
+                        <f:convertNumber type="number"
+                                         maxFractionDigits="3"
+                                         groupingUsed="false"/>
+                    </h:outputText>
                 </p:column>
 
                 <p:column headerText="Radius">
-                    <h:outputText value="#{p.radius}"/>
+                    <h:outputText value="#{p.radius}">
+                        <f:convertNumber type="number"
+                                         maxFractionDigits="3"
+                                         groupingUsed="false"/>
+                    </h:outputText>
                 </p:column>
 
                 <p:column headerText="Result">
@@ -71,7 +80,7 @@
 
                 <p:column headerText="Current time">
                     <h:outputText value="#{p.currentTime}">
-                        <!--                        <f:convertDateTime pattern="dd.MM.yyyy HH:mm"/>-->
+                        <f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss"/>
                     </h:outputText>
                 </p:column>
 

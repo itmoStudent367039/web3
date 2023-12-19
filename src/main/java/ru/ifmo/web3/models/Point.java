@@ -4,7 +4,7 @@ import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
 import jakarta.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Named
 @SessionScoped
@@ -24,11 +24,11 @@ public class Point implements Serializable {
     @Column
     private boolean result;
     @Column
-    private LocalDateTime currentTime;
+    private Date currentTime;
     @Column
     private double requestTime;
 
-    public Point(Integer id, double x, double y, double radius, boolean result, LocalDateTime currentTime, double requestTime) {
+    public Point(Integer id, double x, double y, double radius, boolean result, Date currentTime, double requestTime) {
         this.id = id;
         this.x = x;
         this.y = y;
@@ -87,11 +87,11 @@ public class Point implements Serializable {
         this.result = result;
     }
 
-    public LocalDateTime getCurrentTime() {
+    public Date getCurrentTime() {
         return currentTime;
     }
 
-    public void setCurrentTime(LocalDateTime currentTime) {
+    public void setCurrentTime(Date currentTime) {
         this.currentTime = currentTime;
     }
 

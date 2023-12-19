@@ -11,8 +11,9 @@ services:
       - 'POSTGRES_DB=web'
       - 'POSTGRES_PASSWORD=postgres'
 
-  backend:
-    build: .
-    ports:
-      - '8080:8080'
+#  backend:
+#    build: .
+#    restart: unless-stopped
+#    ports:
+#      - '8080:8080'
 

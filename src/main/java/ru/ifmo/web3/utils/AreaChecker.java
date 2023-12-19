@@ -2,20 +2,19 @@ package ru.ifmo.web3.utils;
 
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
-import ru.ifmo.web3.models.Point;
-
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
+import ru.ifmo.web3.models.Point;
 
 @Named
 @SessionScoped
 public class AreaChecker implements Serializable {
   public void setResultAndTime(Point point) {
-      long startTime = System.nanoTime();
-      point.setCurrentTime(LocalDateTime.now());
-      boolean isInside = isInside(point.getX(), point.getY(), point.getRadius());
-      point.setResult(isInside);
-      point.setRequestTime(System.nanoTime() - startTime);
+    long startTime = System.nanoTime();
+    point.setCurrentTime(new Date(System.currentTimeMillis()));
+    boolean isInside = isInside(point.getX(), point.getY(), point.getRadius());
+    point.setResult(isInside);
+    point.setRequestTime(System.nanoTime() - startTime);
   }
 
   private boolean isInside(double x, double y, double r) {
